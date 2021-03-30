@@ -1,16 +1,16 @@
 # == Schema Information
 #
-# Table name: tweets
+# Table name: photos
 #
 #  id         :integer          not null, primary key
-#  body       :text
+#  title      :string
+#  image_url  :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  username   :string
 #
 require "test_helper"
 
-class TweetTest < ActiveSupport::TestCase
+class PhotoTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
