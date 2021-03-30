@@ -9,4 +9,6 @@
 #  updated_at :datetime         not null
 #
 class Photo < ApplicationRecord
+  validates :title, presence: true
+  validates :image_url, presence: true, format: { with: /.\.(png|jpeg|jpg|gif)/ }
 end
