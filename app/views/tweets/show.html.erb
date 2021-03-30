@@ -5,5 +5,10 @@
   <%= @tweet.body %>
 </p>
 
+<p>
+  <strong>Username:</strong>
+  <%= @tweet.username unless @tweet.username.nil? %>
+</p>
+
 <%= link_to 'Edit', edit_tweet_path(@tweet) %> |
 <%= link_to 'Back', tweets_path %>
