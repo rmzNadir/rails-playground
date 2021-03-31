@@ -12,16 +12,20 @@ class PhotosController < ApplicationController
     end
   end
 
-  def new; end
+  def new
+    session[:intentos] = session[:intentos] ? session[:intentos] + 1 : 1
+  end
 
   def create
     photo = Photo.new(photo_params)
 
-    photo.save
-
     respond_to do |format|
-      format.html { redirect_to photo }
-      format.json { render json: photo, status: :created }
+      if photo.save
+        format.html { redirect_to photo, notice: 'Todo salió perrón' }
+        format.json { render json: photo, status: :created }
+      else
+        format.html { redirect_back fallback_location: photos_path, notice: 'Algo salió mal' }
+      end
     end
   end
 
