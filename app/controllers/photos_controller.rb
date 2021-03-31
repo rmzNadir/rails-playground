@@ -15,20 +15,17 @@ class PhotosController < ApplicationController
   def new; end
 
   def create
-    photo = Photo.new
-
-    photo.title = params[:photo][:title]
-    photo.image_url = params[:photo][:image_url]
+    photo = Photo.new(photo_params)
 
     photo.save
 
     respond_to do |format|
       format.html { redirect_to photo }
-      format.json { render json: @photo, status: :created }
+      format.json { render json: photo, status: :created }
     end
   end
 
-  # /photos/:id/edit
+  # GET /photos/:id/edit
   def edit
     @id = params[:id]
   end
@@ -37,10 +34,7 @@ class PhotosController < ApplicationController
   def update
     photo = Photo.find(params[:id])
 
-    photo.title = params[:photo][:title]
-    photo.image_url = params[:photo][:image_url]
-
-    photo.save
+    photo.update(photo_params)
 
     redirect_to photo
   end
@@ -54,5 +48,11 @@ class PhotosController < ApplicationController
       format.html { redirect_to '/photos' }
       format.json { head :ok }
     end
+  end
+
+  private
+
+  def photo_params
+    params.require(:photo).permit(:title, :image_url)
   end
 end
