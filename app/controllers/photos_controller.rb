@@ -5,6 +5,11 @@ class PhotosController < ApplicationController
 
   def show
     @photo = Photo.find(params[:id])
+
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @photo }
+    end
   end
 
   def new; end
@@ -17,7 +22,10 @@ class PhotosController < ApplicationController
 
     photo.save
 
-    redirect_to photo
+    respond_to do |format|
+      format.html { redirect_to photo }
+      format.json { render json: @photo, status: :created }
+    end
   end
 
   # /photos/:id/edit
@@ -42,6 +50,9 @@ class PhotosController < ApplicationController
     photo = Photo.find(params[:id])
     photo.destroy
 
-    redirect_to '/photos'
+    respond_to do |format|
+      format.html { redirect_to '/photos' }
+      format.json { head :ok }
+    end
   end
 end
