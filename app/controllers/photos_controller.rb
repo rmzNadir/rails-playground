@@ -25,6 +25,7 @@ class PhotosController < ApplicationController
     @id = params[:id]
   end
 
+  # PUT/PATCH /photos/:id
   def update
     photo = Photo.find(params[:id])
 
@@ -34,5 +35,13 @@ class PhotosController < ApplicationController
     photo.save
 
     redirect_to photo
+  end
+
+  # DELETE /photos/:id
+  def destroy
+    photo = Photo.find(params[:id])
+    photo.destroy
+
+    redirect_to '/photos'
   end
 end
