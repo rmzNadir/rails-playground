@@ -1,1 +1,13 @@
-<div>Hola desde photos</div>
+<h1>Fotos</h1>
+
+<% @photos.each do |photo|%>
+    <div>
+        <h2>
+            <%= photo.title %>
+        </h2>
+        <%= image_tag photo.image_url %>
+        <div>
+         <%= link_to 'Ver más', photo %>
+        </div>
+    </div>
+<% end %>
