@@ -9,8 +9,11 @@
 #  updated_at :datetime         not null
 #
 class Photo < ApplicationRecord
-  validates :title, presence: true
-  validates :image_url, presence: true, format: { with: /.\.(png|jpeg|jpg|gif)/ }
+  validates :title, presence: true, uniqueness: { message: '%{value} es un valor que ya fue usado para %{attribute}' }
+  validates :image_url, presence: true, format: { with: /.\.(png|jpeg|jpg|gif)/, message: 'La URL no es válida' }
+
+  # Photo.latest(1)
+  scope :latest, ->(limit) { order('id desc').limit(limit) }
 
   def self.paginate(page = 1, per_page = 15)
     Photo.order('id desc').offset((page - 1) * per_page).limit(per_page)
