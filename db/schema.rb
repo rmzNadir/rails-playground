@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_02_203506) do
+ActiveRecord::Schema.define(version: 2021_04_03_192059) do
 
   create_table "photos", force: :cascade do |t|
     t.string "title"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 2021_04_02_203506) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "todo_id", null: false
     t.index ["todo_id"], name: "index_photos_on_todo_id"
+  end
+
+  create_table "photos_tags", id: false, force: :cascade do |t|
+    t.integer "photo_id", null: false
+    t.integer "tag_id", null: false
+    t.index ["photo_id", "tag_id"], name: "index_photos_tags_on_photo_id_and_tag_id"
+    t.index ["tag_id", "photo_id"], name: "index_photos_tags_on_tag_id_and_photo_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.string "color"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "todos", force: :cascade do |t|

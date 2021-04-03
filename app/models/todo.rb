@@ -16,7 +16,8 @@ class Todo < ApplicationRecord
 
   before_validation :set_randome_title_if_nil
 
-  has_many :photos
+  # dependent: :destroy permite, al elminar un todo tambien eliminar los registros asociados, en este caso, fotos
+  has_many :photos, dependent: :destroy
 
   private
 

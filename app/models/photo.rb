@@ -22,6 +22,7 @@ class Photo < ApplicationRecord
   validates :image_url, presence: true, format: { with: /.\.(png|jpeg|jpg|gif)/, message: 'La URL no es válida' }
 
   belongs_to :todo
+  has_and_belongs_to_many :tags
 
   # Photo.latest(1)
   scope :latest, ->(limit) { order('id desc').limit(limit) }
