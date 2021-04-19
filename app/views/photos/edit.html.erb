@@ -1,20 +1,18 @@
-<form action="<%= photo_path(@id) %>" method="post">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token%>
-    <input type="hidden" name="_method" value="PATCH">
-    
-    <div>
-        <label for="title">Título</label>
-        <input type="text" name="photo[title]" id="title">
+<%= form_with model: @photo do |f| %>
+   <div>
+        <%= f.label :title%>
+        <%= f.text_field :title%>
     </div>
 
     <div>
-     <label for="image_url">URL de la foto</label>
-        <input type="url" name="photo[image_url]" id="image_url">
+        <%= f.label :image_url%>
+        <%= f.url_field :image_url%>
+
     </div>
 
-    <input type="submit" value="Enviar">
-</form>
+    <%= f.submit "Guardar"%>
+<%end%>
 
 <div>
-    <%= link_to 'Cancelar', photo_path(@id) %>
+    <%= link_to 'Cancelar', photo_path(@photo.id) %>
 </div>

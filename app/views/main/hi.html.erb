@@ -1,7 +1,7 @@
-<%= form_tag "/hi", method: :post do%>
+<%= form_with url:"/hi", method: :post do |f|%>
    <div>
      <%= label_tag :name, "Nombre"%>
-    <%= text_field_tag :name%>
+    <%= f.text_field :name%>
    </div>
    <div>
     <%= submit_tag "Enviar" %>

@@ -1,5 +1,5 @@
 class PhotosController < ApplicationController
-  before_action :set_photo, only: %i[show update destroy]
+  before_action :set_photo, only: %i[show update destroy edit]
 
   def index
     @photos = Photo.all
@@ -31,14 +31,14 @@ class PhotosController < ApplicationController
 
   # GET /photos/:id/edit
   def edit
-    @id = params[:id]
+    @photo
   end
 
   # PUT/PATCH /photos/:id
   def update
     @photo.update(photo_params)
 
-    redirect_to photo
+    redirect_to @photo
   end
 
   # DELETE /photos/:id
