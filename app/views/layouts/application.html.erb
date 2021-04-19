@@ -14,6 +14,9 @@
   <% if notice %>
     <p><%= notice %></p>
   <% end %>
+  
+    <%= yield :sidebar_options %>
+
     <%= yield %>
   </body>
 </html>
